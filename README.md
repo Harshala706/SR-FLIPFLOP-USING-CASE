@@ -44,24 +44,30 @@ The maximum possible groupings of adjacent ones are already shown in the figure.
 */
 ```
 ```
-module exp6(D,clk,Q,Qbar);
-input D,clk;
-output reg Q;
-output reg Qbar;
-initial Q=0;
-initial Qbar=1;
-always @(posedge clk)
-begin
-Q=D;
-Qbar=~D;
+module sr_ff(s,r,clk,q,qbar);
+input s,r,clk;
+output reg q;
+output reg qbar;
+initial
+begin 
+q=0;
+qbar=1;
 end
+always@(posedge clk)
+begin 
+q=s|(~r&q);
+qbar=r|(~s&~q);
+end 
 endmodule
 ```
+
 **RTL LOGIC FOR FLIPFLOPS**
-![exp logicgate-6](https://github.com/user-attachments/assets/51a0ce0a-ded5-44dd-a7b9-51c56d54611a)
+
+![sr_ff logicgate](https://github.com/user-attachments/assets/af7ca21f-10ec-4624-a1aa-4baa3e21e529)
 
 **TIMING DIGRAMS FOR FLIP FLOPS**
-![exp waveform-6](https://github.com/user-attachments/assets/44acced4-d6eb-4b9e-bcd6-73ee03f92a69)
+
+![sr_ff waveform](https://github.com/user-attachments/assets/96f13403-f10e-4eef-9c8b-edd05a7cf74e)
 
 **RESULTS**
 SR flip flop is validated using their functional tables.
